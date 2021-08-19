@@ -17,7 +17,7 @@ class _LogInState extends State<LogIn> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
             child: TextField(
               obscureText: true,
               decoration: InputDecoration(
@@ -48,11 +48,12 @@ class _LogInState extends State<LogIn> {
               child: Center(
                 child: Text("Log In"),
               ),
-              height: 30,
+              height: 40,
               width: 150,
             ),
           )
         ],
+        mainAxisAlignment: MainAxisAlignment.center,
       ),
     );
   }

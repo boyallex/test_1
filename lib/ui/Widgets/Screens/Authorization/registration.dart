@@ -15,7 +15,9 @@ class _RegistrationState extends State<Registration> {
         title: Text("Authorization"),
       ),
       body: Column(
-        children: [],
+        children: [
+          
+        ],
       ),
     );
   }

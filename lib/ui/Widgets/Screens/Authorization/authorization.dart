@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_1/ui/Widgets/Screens/Authorization/log_in.dart';
+import 'package:test_1/ui/Widgets/Screens/Authorization/registration.dart';
 
 class Authorization extends StatefulWidget {
   const Authorization({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class Authorization extends StatefulWidget {
 class _AuthorizationState extends State<Authorization> {
   @override
   Widget build(BuildContext context) {
-    
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Authorization"),
@@ -28,7 +29,11 @@ class _AuthorizationState extends State<Authorization> {
               child: Text("Log in"),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return Registration();
+                }));
+              },
               child: Text("Registration"),
             )
           ],
