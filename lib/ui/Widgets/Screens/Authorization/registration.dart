@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_1/ui/Widgets/EnteringField.dart';
 
 class Registration extends StatefulWidget {
   const Registration({Key? key}) : super(key: key);
@@ -8,8 +9,18 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends State<Registration> {
+  final nameController =TextEditingController();
+  final emaleController = TextEditingController();
+  final passwordController = TextEditingController();
+  final cPasswordController = TextEditingController();
+
+  void onConfirmData() {
+    
+  }
+  
   @override
   Widget build(BuildContext context) {
+    const EdgeInsets pad = EdgeInsets.only(left: 10, right: 10, bottom: 10);
     return Scaffold(
       appBar: AppBar(
         title: Text("Authorization"),
@@ -18,46 +29,24 @@ class _RegistrationState extends State<Registration> {
         children: [
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Name",
-              ),
-            ),
+            child: EnteringField("Name", nameController),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-            child: TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Emale",
-              ),
-            ),
+            padding: pad,
+            child: EnteringField("Emaile", emaleController)
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-            child: TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Password",
-              ),
-            ),
+            padding: pad,
+            child: EnteringField("Password", passwordController),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-            child: TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Repeat Password",
-              ),
-            ),
+            padding: pad,
+            child: EnteringField("Confirm password", cPasswordController),
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              // if (this.nameController.text.isEmpty)
+            },
             child: SizedBox(
               child: Center(
                 child: Text("Sign Up"),

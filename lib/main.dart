@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'ui/Widgets/Screens/Authorization/authorization.dart';
+import 'ui/Widgets/Screens/Authorization/start_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Authorization(),
+      home: StartScreen(),
     );
   }
 }

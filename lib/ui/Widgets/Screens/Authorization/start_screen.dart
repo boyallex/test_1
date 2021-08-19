@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:test_1/ui/Widgets/Screens/Authorization/log_in.dart';
 import 'package:test_1/ui/Widgets/Screens/Authorization/registration.dart';
 
-class Authorization extends StatefulWidget {
-  const Authorization({Key? key}) : super(key: key);
+class StartScreen extends StatefulWidget {
+  const StartScreen({Key? key}) : super(key: key);
 
   @override
-  _AuthorizationState createState() => _AuthorizationState();
+  _StartScreenState createState() => _StartScreenState();
 }
 
-class _AuthorizationState extends State<Authorization> {
+class _StartScreenState extends State<StartScreen> {
+  /// Начальный экран
   @override
   Widget build(BuildContext context) {
     return Scaffold(
