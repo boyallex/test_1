@@ -50,7 +50,7 @@ class _RegistrationState extends State<Registration> {
               print(this.passwordController.text);
               Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context){
                   return MainScreen();
-              }), (route) => false);
+              }), (route) => true);
             },
             child: SizedBox(
               child: Center(

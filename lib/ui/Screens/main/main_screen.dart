@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-
 class MainScreen extends StatefulWidget {
-  const MainScreen({ Key? key }) : super(key: key);
+  const MainScreen({Key? key}) : super(key: key);
 
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -13,7 +12,13 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Container(),
+      body: Container(
+        child: Center(
+          child: Image(
+            image: AssetImage("images/pic.jpg"),
+          ),
+        ),
+      ),
     );
   }
 }
