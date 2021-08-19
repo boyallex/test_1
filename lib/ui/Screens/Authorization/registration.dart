@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_1/ui/Screens/main/main_screen.dart';
 import 'package:test_1/ui/Widgets/EnteringField.dart';
 
 class Registration extends StatefulWidget {
@@ -46,6 +47,10 @@ class _RegistrationState extends State<Registration> {
           ElevatedButton(
             onPressed: () {
               // if (this.nameController.text.isEmpty)
+              print(this.passwordController.text);
+              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context){
+                  return MainScreen();
+              }), (route) => false);
             },
             child: SizedBox(
               child: Center(

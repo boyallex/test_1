@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_1/ui/Screens/main/main_screen.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({Key? key}) : super(key: key);
@@ -43,7 +44,12 @@ class _LogInState extends State<LogIn> {
             height: 10,
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) {
+                return MainScreen();
+              }), (route) => false);
+            },
             child: SizedBox(
               child: Center(
                 child: Text("Log In"),

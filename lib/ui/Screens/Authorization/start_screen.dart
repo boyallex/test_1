@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_1/ui/Widgets/Screens/Authorization/log_in.dart';
-import 'package:test_1/ui/Widgets/Screens/Authorization/registration.dart';
+import 'package:test_1/ui/Screens/Authorization/log_in.dart';
+import 'package:test_1/ui/Screens/Authorization/registration.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({Key? key}) : super(key: key);

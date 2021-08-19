@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'ui/Widgets/Screens/Authorization/start_screen.dart';
+import 'ui/Screens/Authorization/start_screen.dart';
 
 void main() {
   runApp(MyApp());
