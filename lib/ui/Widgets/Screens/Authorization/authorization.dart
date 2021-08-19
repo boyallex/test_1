@@ -12,7 +12,6 @@ class Authorization extends StatefulWidget {
 class _AuthorizationState extends State<Authorization> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Authorization"),
@@ -26,7 +25,13 @@ class _AuthorizationState extends State<Authorization> {
                   return LogIn();
                 }));
               },
-              child: Text("Log in"),
+              child: SizedBox(
+                child: Center(
+                  child: Text("Log in"),
+                ),
+                width: 110,
+                height: 40,
+              ),
             ),
             ElevatedButton(
               onPressed: () {
@@ -34,7 +39,13 @@ class _AuthorizationState extends State<Authorization> {
                   return Registration();
                 }));
               },
-              child: Text("Registration"),
+              child: SizedBox(
+                child: Center(
+                  child: Text("Registration"),
+                ),
+                width: 110,
+                height: 40,
+              ),
             )
           ],
           mainAxisAlignment: MainAxisAlignment.spaceAround,
