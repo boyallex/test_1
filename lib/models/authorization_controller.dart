@@ -4,10 +4,10 @@ class AuthorizationController {
   String? password;
   String? email;
 
-  String? _nameError;
-  String? _loginError;
-  String? _passwordError;
-  String? _emailError;
+  // String? _nameError;
+  // String? _loginError;
+  // String? _passwordError;
+  // String? _emailError;
 
   bool? _isCorrect;
 
