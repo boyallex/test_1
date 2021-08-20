@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_1/assets/strings.dart';
 import 'package:test_1/ui/Screens/main/main_screen.dart';
 import 'package:test_1/ui/Widgets/EnteringField.dart';
 
@@ -24,25 +25,25 @@ class _RegistrationState extends State<Registration> {
     const EdgeInsets pad = EdgeInsets.only(left: 10, right: 10, bottom: 10);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Authorization"),
+        title: Text(Strings.Auth),
       ),
       body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: EnteringField("Name", nameController),
+            child: EnteringField(Strings.name, nameController),
           ),
           Padding(
             padding: pad,
-            child: EnteringField("Emaile", emaleController)
+            child: EnteringField(Strings.email, emaleController)
           ),
           Padding(
             padding: pad,
-            child: EnteringField("Password", passwordController),
+            child: EnteringField(Strings.password, passwordController),
           ),
           Padding(
             padding: pad,
-            child: EnteringField("Confirm password", cPasswordController),
+            child: EnteringField(Strings.conf_pass, cPasswordController),
           ),
           ElevatedButton(
             onPressed: () {
@@ -54,7 +55,7 @@ class _RegistrationState extends State<Registration> {
             },
             child: SizedBox(
               child: Center(
-                child: Text("Sign Up"),
+                child: Text(Strings.sign_up),
               ),
               height: 40,
               width: 150,

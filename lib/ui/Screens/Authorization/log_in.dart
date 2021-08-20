@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_1/assets/strings.dart';
 import 'package:test_1/ui/Screens/main/main_screen.dart';
 
 class LogIn extends StatefulWidget {
@@ -23,7 +24,7 @@ class _LogInState extends State<LogIn> {
               obscureText: true,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: "Login",
+                labelText: Strings.login,
               ),
             ),
           ),
@@ -36,7 +37,7 @@ class _LogInState extends State<LogIn> {
               obscureText: true,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: "Password",
+                labelText: Strings.password,
               ),
             ),
           ),
@@ -52,7 +53,7 @@ class _LogInState extends State<LogIn> {
             },
             child: SizedBox(
               child: Center(
-                child: Text("Log In"),
+                child: Text(Strings.log_in),
               ),
               height: 40,
               width: 150,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_1/assets/strings.dart';
 import 'package:test_1/ui/Screens/Authorization/log_in.dart';
 import 'package:test_1/ui/Screens/Authorization/registration.dart';
 
@@ -28,7 +29,7 @@ class _StartScreenState extends State<StartScreen> {
               },
               child: SizedBox(
                 child: Center(
-                  child: Text("Log in"),
+                  child: Text(Strings.log_in),
                 ),
                 width: 110,
                 height: 40,
@@ -42,7 +43,7 @@ class _StartScreenState extends State<StartScreen> {
               },
               child: SizedBox(
                 child: Center(
-                  child: Text("Registration"),
+                  child: Text(Strings.reg),
                 ),
                 width: 110,
                 height: 40,

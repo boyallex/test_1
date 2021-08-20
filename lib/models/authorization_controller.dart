@@ -22,7 +22,7 @@ class AuthorizationController {
     return nonNullName.isNotEmpty;
   }
 
-  // bool isCorrectPassword() {
+  // bool isCorrectPassword() {c
   //   String nonNullPassword = this.password!;
   //   bool isCorrect = true;
   //   bool isExistLetters = false;
