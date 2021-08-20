@@ -15,10 +15,8 @@ class EnteringField extends StatelessWidget {
       decoration: InputDecoration(
         border: OutlineInputBorder(),
         labelText: this.text,
-        errorText: this.isCorrect ? null : "Invalid input",
       ),
       controller: controller,
-      
     );
   }
 }
