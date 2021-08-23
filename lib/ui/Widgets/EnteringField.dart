@@ -17,7 +17,6 @@ class EnteringField extends StatelessWidget {
         labelText: this.text,
       ),
       controller: controller,
-      smartDashesType: SmartDashesType.enabled,
     );
   }
 }

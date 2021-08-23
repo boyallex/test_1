@@ -8,9 +8,9 @@ part 'sign_up_event.dart';
 part 'sign_up_state.dart';
 
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
-  SignUpValidator validator;
+  // SignUpValidator validator;
 
-  SignUpBloc(this.validator) : super(SignUpInitial());
+  SignUpBloc() : super(SignUpInitial());
 
   @override
   Stream<SignUpState> mapEventToState(
