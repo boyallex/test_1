@@ -10,7 +10,7 @@ class LoginValidator {
 
   }
 
-  bool isCorrectLogin()
+  // bool isCorrectLogin()
 }
 
 

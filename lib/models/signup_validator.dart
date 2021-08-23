@@ -1,26 +1,37 @@
-abstract class SignUpController {
+class SignUpValidator {
   String name;
   String password;
   String email;
 
-  bool _isCorrect = false;
+  bool _isCorrect = true;
 
-  SignUpController(this.name, this.email, this.password) {}
+  String _problem_type = "";
+
+  SignUpValidator(this.name, this.email, this.password){
+    this._isCorrect &= isCorrectEmail() && isCorrectName() && isCorrectPassword();
+  }
+  bool get isCorrect => this._isCorrect;
 
   bool isCorrectName() {
+    this._problem_type = this.name.isNotEmpty ? " " : "You didn't enter your name";
     return this.name.isNotEmpty;
+  }
+  String warning() {
+    return this._problem_type;
   }
 
   bool isCorrectEmail() {
     bool isAted = false;
     int i = 0;
     if (this.email.isEmpty) {
+      this._problem_type = "Invalid email";
       return false;
     } else {
       while (this.email[i] != "@" && i < this.email.length) {
         isAted = this.email[i] == "@";
         i++;
       }
+      this._problem_type = isAted ? " " : "Invalid email";
       return isAted;
     }
   }
@@ -42,11 +53,13 @@ abstract class SignUpController {
     }
     // пустоста и количество знаков
     if ((this.password.length < 8)) {
+      this._problem_type = "Password is too easy";
       return false;
       // return "Password is too easy";
     }
     //
     else if (!isExistLetters & !isExistNumbers) {
+      this._problem_type = "Password has to contain latin letters and numbers!";
         return false;
       // return "Password has to contain latin letters and numbers!";
     }
