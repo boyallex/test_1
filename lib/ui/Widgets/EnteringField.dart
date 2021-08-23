@@ -10,13 +10,14 @@ class EnteringField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color color; 
-    return TextField(
+    return TextFormField(
       obscureText: true,
       decoration: InputDecoration(
         border: OutlineInputBorder(),
         labelText: this.text,
       ),
       controller: controller,
+      smartDashesType: SmartDashesType.enabled,
     );
   }
 }
