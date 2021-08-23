@@ -3,35 +3,35 @@ class SignUpValidator {
   String password;
   String email;
 
-  bool _isCorrect = true;
+  late bool _isCorrect;
 
-  String _problem_type = "";
+  String _problemType = "";
 
   SignUpValidator(this.name, this.email, this.password){
-    this._isCorrect &= isCorrectEmail() && isCorrectName() && isCorrectPassword();
+    this._isCorrect = isCorrectEmail() && isCorrectName() && isCorrectPassword();
   }
   bool get isCorrect => this._isCorrect;
 
   bool isCorrectName() {
-    this._problem_type = this.name.isNotEmpty ? " " : "You didn't enter your name";
+    this._problemType = this.name.isNotEmpty ? " " : "You didn't enter your name";
     return this.name.isNotEmpty;
   }
   String warning() {
-    return this._problem_type;
+    return this._problemType;
   }
 
   bool isCorrectEmail() {
     bool isAted = false;
     int i = 0;
     if (this.email.isEmpty) {
-      this._problem_type = "Invalid email";
+      this._problemType = "Invalid email";
       return false;
     } else {
       while (this.email[i] != "@" && i < this.email.length) {
         isAted = this.email[i] == "@";
         i++;
       }
-      this._problem_type = isAted ? " " : "Invalid email";
+      this._problemType = isAted ? " " : "Invalid email";
       return isAted;
     }
   }
@@ -53,13 +53,13 @@ class SignUpValidator {
     }
     // пустоста и количество знаков
     if ((this.password.length < 8)) {
-      this._problem_type = "Password is too easy";
+      this._problemType = "Password is too easy";
       return false;
       // return "Password is too easy";
     }
     //
     else if (!isExistLetters & !isExistNumbers) {
-      this._problem_type = "Password has to contain latin letters and numbers!";
+      this._problemType = "Password has to contain latin letters and numbers!";
         return false;
       // return "Password has to contain latin letters and numbers!";
     }
