@@ -9,11 +9,22 @@ class WarningField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Visibility(
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(8.0),
         child: Container(
-          color: Colors.red,
-          child: Text(
-            this.text,
+          // color: Colors.red.shade300,
+          child: Center(
+            child: Text(
+              this.text,
+            ),
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            color: Colors.red.shade300,
+          ),
+          constraints: BoxConstraints(
+            minHeight: 30,
+            minWidth: 80,
+            maxWidth: 110
           ),
         ),
       ),
