@@ -11,7 +11,7 @@ class SignUpValidator {
   SignUpValidator(this.name, this.email, this.password, this.cPassword) {
     print(isCorrectEmail());
     this._isCorrect =
-        isCorrectEmail() && isCorrectName() && isCorrectPassword();
+        isCorrectEmail() && isCorrectName() && isCorrectPassword() && isConfirmPassword();
   }
   bool get isCorrect => this._isCorrect;
 

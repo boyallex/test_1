@@ -6,10 +6,10 @@ abstract class SignUpEvent {
 }
 
 class SignUpConfirm extends SignUpEvent{
-  String name;
-  String email;
-  String password;
-  String cPassword; // пароль для сравнения
+  final String name;
+  final String email;
+  final String password;
+  final String cPassword; // пароль для сравнения
   SignUpConfirm(
       {required this.name, required this.email, required this.password, required this.cPassword});
 
