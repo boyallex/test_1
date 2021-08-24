@@ -17,9 +17,14 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     SignUpEvent event,
   ) async* {
     // TODO: implement mapEventToState
-    
+
     if (event is SignUpConfirm) {
-      final validator = SignUpValidator(event.name, event.email, event.password);
+      final validator = SignUpValidator(
+        event.name,
+        event.email,
+        event.password,
+        event.cPassword,
+      );
       if (validator.isCorrect) {
         yield SignUpSuccess();
       } else {

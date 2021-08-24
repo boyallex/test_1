@@ -48,18 +48,19 @@ class _RegistrationState extends State<Registration> {
           children: [
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: EnteringField(Strings.name, nameController),
+              child: EnteringField(Strings.name, false, nameController),
             ),
             Padding(
                 padding: pad,
-                child: EnteringField(Strings.email, emailController)),
+                child: EnteringField(Strings.email, false, emailController)),
             Padding(
               padding: pad,
-              child: EnteringField(Strings.password, passwordController),
+              child: EnteringField(Strings.password, true, passwordController),
             ),
             Padding(
               padding: pad,
-              child: EnteringField(Strings.conf_pass, cPasswordController),
+              child:
+                  EnteringField(Strings.conf_pass, true, cPasswordController),
             ),
             BlocBuilder<SignUpBloc, SignUpState>(
               bloc: bloc,
@@ -78,6 +79,7 @@ class _RegistrationState extends State<Registration> {
                     email: emailController.text,
                     name: nameController.text,
                     password: passwordController.text,
+                    cPassword: this.cPasswordController.text,
                   ),
                 );
               },

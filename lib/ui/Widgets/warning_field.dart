@@ -24,7 +24,7 @@ class WarningField extends StatelessWidget {
           constraints: BoxConstraints(
             minHeight: 30,
             minWidth: 80,
-            maxWidth: 110
+            maxWidth: 180
           ),
         ),
       ),
