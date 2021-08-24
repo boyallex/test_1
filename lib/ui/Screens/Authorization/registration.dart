@@ -27,63 +27,70 @@ class _RegistrationState extends State<Registration> {
     // BlocProvider _bloc = BlocProvider.of(context);
     final bloc = SignUpBloc();
     bool isWarningVisible = false;
+    String warning = "";
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(Strings.Auth),
-      ),
-      body: BlocBuilder<SignUpBloc, SignUpState>(
-        bloc: bloc,
-        builder: (context, state) {
-          return Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: EnteringField(Strings.name, nameController),
-              ),
-              Padding(
-                  padding: pad,
-                  child: EnteringField(Strings.email, emailController)),
-              Padding(
+    return BlocListener<SignUpBloc, SignUpState>(
+      bloc: bloc,
+      listener: (context, state) {
+        // TODO: implement listener
+        if (state is SignUpSuccess) {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) {
+            return MainScreen();
+          }), (route) => true);
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(Strings.Auth),
+        ),
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: EnteringField(Strings.name, nameController),
+            ),
+            Padding(
                 padding: pad,
-                child: EnteringField(Strings.password, passwordController),
-              ),
-              Padding(
-                padding: pad,
-                child: EnteringField(Strings.conf_pass, cPasswordController),
-              ),
-              WarningField(isVisible: isWarningVisible),
-              ElevatedButton(
-                onPressed: () {
-                  bloc.add(
-                    SignUpConfirm(
-                      email: emailController.text,
-                      name: nameController.text,
-                      password: passwordController.text,
-                    ),
-                  );
-                  if (state is SignUpFailed) {
-                    isWarningVisible = true;
-                  } else {
-                    Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(builder: (context) {
-                      return MainScreen();
-                    }), (route) => true);
-                  }
-                },
-                child: SizedBox(
-                  child: Center(
-                    child: Text(Strings.sign_up),
+                child: EnteringField(Strings.email, emailController)),
+            Padding(
+              padding: pad,
+              child: EnteringField(Strings.password, passwordController),
+            ),
+            Padding(
+              padding: pad,
+              child: EnteringField(Strings.conf_pass, cPasswordController),
+            ),
+            BlocBuilder<SignUpBloc, SignUpState>(
+              bloc: bloc,
+              builder: (context, state) {
+                if (state is SignUpFailed) {
+                  isWarningVisible = true;
+                  warning = state.warning;
+                }
+                return WarningField(isVisible: isWarningVisible, text: warning);
+              },
+            ),
+            ElevatedButton(
+              onPressed: () {
+                bloc.add(
+                  SignUpConfirm(
+                    email: emailController.text,
+                    name: nameController.text,
+                    password: passwordController.text,
                   ),
-                  height: 40,
-                  width: 150,
+                );
+              },
+              child: SizedBox(
+                child: Center(
+                  child: Text(Strings.sign_up),
                 ),
+                height: 40,
+                width: 150,
               ),
-             
-              
-            ],
-          );
-        },
+            ),
+          ],
+        ),
       ),
     );
   }

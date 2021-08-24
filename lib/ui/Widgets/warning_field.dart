@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class WarningField extends StatelessWidget {
   final bool isVisible;
-  WarningField({required this.isVisible});
+  final String text;
+  WarningField({required this.isVisible, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -10,8 +11,9 @@ class WarningField extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Container(
+          color: Colors.red,
           child: Text(
-            "У вас ошибка",
+            this.text,
           ),
         ),
       ),
