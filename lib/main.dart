@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       color: Colors.white,
+      
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -18,3 +19,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
