@@ -1,17 +1,27 @@
+import 'package:test_1/modules/login_data.dart';
+
 class LoginValidator {
-  final String? firstLogin;
-  final String? firstPassword;
-  final String? secondPassword;
-  final String? secondLogin;
+  final String login;
+  final String password;
+  final List<LoginData> data;
   bool isCorrect = false;
 
   LoginValidator({
-    this.firstLogin,
-    this.secondLogin,
-    this.firstPassword,
-    this.secondPassword,
+    required this.login,
+    required this.password,
+    required this.data,
   }) {
-    isCorrect = (this.firstLogin == this.secondLogin) &&
-        (this.firstPassword == this.secondPassword);
+    this.isCorrect = this._isCorrect();
+  }
+
+  bool _isCorrect() {
+    int i = 0;
+    while ((data[i].login == this.login) && i < data.length) {
+      if (data[i].password == data[i].password) {
+        return true;
+      }
+      i++;
+    }
+    return false;
   }
 }
