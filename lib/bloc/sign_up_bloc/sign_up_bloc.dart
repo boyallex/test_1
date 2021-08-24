@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:test_1/models/signup_validator.dart';
+import 'package:test_1/validators/signup_validator.dart';
 
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';
