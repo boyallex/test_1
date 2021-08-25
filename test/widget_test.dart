@@ -28,14 +28,15 @@ void main() {
   //   expect(find.text('0'), findsNothing);
   //   expect(find.text('1'), findsOneWidget);
   // });
-  test('Тест валидатора для логина', () {
-    // проверка email
-    //arrange
-    final SignUpValidator validator = SignUpValidator("Алексей", "fbenkov@mail.ru", "пароль");
-    //act
-    var result = validator.isCorrectEmail();
-    //assert
-    expect(result, true);
+  // test('Тест валидатора для логина', () {
+  //   // проверка email
+  //   //arrange
+  //   final SignUpValidator validator = SignUpValidator("Алексей", "fbenkov@mail.ru", "пароль");
+  //   //act
+  //   var result = validator.isCorrectEmail();
+  //   //assert
+  //   expect(result, true);
     
-  });
+  // });
+  
 }

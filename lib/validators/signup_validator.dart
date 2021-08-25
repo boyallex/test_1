@@ -1,7 +1,9 @@
+/// Класс для обработки данных с Регистрации. Можно получить bool isCorrect (верные/неверные данные)
+/// и вид ошибки warning
 class SignUpValidator {
   String name;
   String password;
-  String email; 
+  String email;
   String cPassword;
 
   late bool _isCorrect;
@@ -10,8 +12,10 @@ class SignUpValidator {
 
   SignUpValidator(this.name, this.email, this.password, this.cPassword) {
     print(isCorrectEmail());
-    this._isCorrect =
-        isCorrectEmail() && isCorrectName() && isCorrectPassword() && isConfirmPassword();
+    this._isCorrect = isCorrectEmail() &&
+        isCorrectName() &&
+        isCorrectPassword() &&
+        isConfirmPassword();
   }
   bool get isCorrect => this._isCorrect;
 
@@ -24,6 +28,7 @@ class SignUpValidator {
   String warning() {
     return this._problemType;
   }
+
   bool isConfirmPassword() {
     if (this.cPassword != this.password) {
       this._problemType = "Passwords are not equal";

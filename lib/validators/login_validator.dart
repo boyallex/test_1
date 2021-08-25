@@ -1,6 +1,7 @@
 import 'package:test_1/modules/login_data.dart';
-
+/// Класс для обработки данных логинизации. 
 class LoginValidator {
+
   final String login;
   final String password;
   final List<LoginData> data;
