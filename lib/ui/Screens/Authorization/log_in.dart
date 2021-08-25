@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_1/assets/strings.dart';
 import 'package:test_1/bloc/login_bloc/login_bloc.dart';
 import 'package:test_1/ui/Screens/main/main_screen.dart';
+import 'package:test_1/ui/Widgets/EnteringField.dart';
 import 'package:test_1/ui/Widgets/warning_field.dart';
 
 class LogIn extends StatefulWidget {
@@ -43,25 +46,16 @@ class _LogInState extends State<LogIn> {
             
             Padding(
               padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: Strings.login,
-                ),
-              ),
+              child: EnteringField(Strings.login, false, loginController),
+              
             ),
             Padding(
               padding: const EdgeInsets.only(
                 left: 10,
                 right: 10,
               ),
-              child: TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: Strings.password,
-                ),
-              ),
+              child: EnteringField(Strings.password, true, passwordController),
+              
             ),
             SizedBox(
               height: 10,
@@ -74,7 +68,7 @@ class _LogInState extends State<LogIn> {
                     isVisible: isWarningVisible,
                     text: Strings.invalid_log_or_pass,
                   );
-                }else {
+                } else {
                   return Container();
                 }
               },
@@ -82,9 +76,11 @@ class _LogInState extends State<LogIn> {
             ElevatedButton(
               onPressed: () {
                 bloc.add(LoginCompare(
-                    login: loginController.text,
-                    password: passwordController.text));
+                  login: loginController.text,
+                  password: passwordController.text,
+                ));
                 isWarningVisible = true;
+                
               },
               child: SizedBox(
                 child: Center(

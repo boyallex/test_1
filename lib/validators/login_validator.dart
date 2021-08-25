@@ -15,18 +15,15 @@ class LoginValidator {
   }
 
   bool _isCorrect() {
+    // ищем логин
     int i = 0;
-    while ((data[i].login != this.login) && i < data.length) {
-      print(this.login);
-      print(data[i].password == this.password);
-      i++;
-    }
+    while ((i < data.length) && (data[i].login != this.login)) { i++; }
+    // если не находим
     if (i == data.length) {
-      print("Неправильно");
       return false;
     }
     else {
-      print("Жопа");
+      //если находим проверяем пароль 
       return data[i].password == this.password;
     }
   }
