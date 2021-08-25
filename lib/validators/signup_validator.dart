@@ -1,3 +1,5 @@
+import 'package:test_1/assets/strings.dart';
+
 /// Класс для обработки данных с Регистрации. Можно получить bool isCorrect (верные/неверные данные)
 /// и вид ошибки warning
 class SignUpValidator {
@@ -11,7 +13,6 @@ class SignUpValidator {
   String _problemType = "";
 
   SignUpValidator(this.name, this.email, this.password, this.cPassword) {
-    print(isCorrectEmail());
     this._isCorrect = isCorrectEmail() &&
         isCorrectName() &&
         isCorrectPassword() &&
@@ -21,7 +22,7 @@ class SignUpValidator {
 
   bool isCorrectName() {
     this._problemType =
-        this.name.isNotEmpty ? " " : "You didn't enter your name";
+        this.name.isNotEmpty ? " " : WarningStrings.unentereing_name;
     return this.name.isNotEmpty;
   }
 
@@ -31,7 +32,7 @@ class SignUpValidator {
 
   bool isConfirmPassword() {
     if (this.cPassword != this.password) {
-      this._problemType = "Passwords are not equal";
+      this._problemType = WarningStrings.passwords_not_equal;
       return false;
     }
     return true;
@@ -39,7 +40,7 @@ class SignUpValidator {
 
   bool isCorrectEmail() {
     if (this.email.isEmpty) {
-      this._problemType = "Invalid email";
+      this._problemType = WarningStrings.invalid_email;
       return false;
     } else {
       bool isAted = false;
@@ -50,7 +51,7 @@ class SignUpValidator {
         }
         i++;
       }
-      this._problemType = isAted ? " " : "Invalid email";
+      this._problemType = isAted ? " " : WarningStrings.invalid_email;
       return isAted;
     }
   }
@@ -73,18 +74,15 @@ class SignUpValidator {
     }
     // пустоста и количество знаков
     if ((this.password.length < 8)) {
-      this._problemType = "Password is too easy";
+      this._problemType = WarningStrings.passwords_easy;
       return false;
       // return "Password is too easy";
     }
     //
     else if (!isExistLetters & !isExistNumbers) {
-      this._problemType = "Password has to contain latin letters and numbers!";
+      this._problemType = WarningStrings.password_has_to_contain;
       return false;
-      // return "Password has to contain latin letters and numbers!";
     }
-    // return "";
     return true;
-    // return nonNullLogin.isNotEmpty & (nonNullLogin.length < 8) & nonNullLogin.
   }
 }

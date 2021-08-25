@@ -24,12 +24,19 @@ class _LogInState extends State<LogIn> {
   final bloc = LoginBloc();
   bool isWarningVisible = false;
 
+  void onPressedLoginButton() {
+    bloc.add(LoginCompare(
+      login: loginController.text,
+      password: passwordController.text,
+    ));
+    this.isWarningVisible = true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginBloc, LoginState>(
       bloc: bloc,
       listener: (context, state) {
-        // TODO: implement listener
         if (state is LoginSuccess) {
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) {
@@ -43,11 +50,9 @@ class _LogInState extends State<LogIn> {
         ),
         body: Column(
           children: [
-            
             Padding(
               padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
               child: EnteringField(Strings.login, false, loginController),
-              
             ),
             Padding(
               padding: const EdgeInsets.only(
@@ -55,7 +60,6 @@ class _LogInState extends State<LogIn> {
                 right: 10,
               ),
               child: EnteringField(Strings.password, true, passwordController),
-              
             ),
             SizedBox(
               height: 10,
@@ -75,12 +79,7 @@ class _LogInState extends State<LogIn> {
             ),
             ElevatedButton(
               onPressed: () {
-                bloc.add(LoginCompare(
-                  login: loginController.text,
-                  password: passwordController.text,
-                ));
-                isWarningVisible = true;
-                
+                this.onPressedLoginButton();
               },
               child: SizedBox(
                 child: Center(

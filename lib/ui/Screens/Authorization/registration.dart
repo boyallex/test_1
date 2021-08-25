@@ -20,6 +20,16 @@ class _RegistrationState extends State<Registration> {
   final cPasswordController = TextEditingController();
 
   void onConfirmData() {}
+  void onPressedRegistrateButton(bloc) {
+    bloc.add(
+      SignUpConfirm(
+        email: emailController.text,
+        name: nameController.text,
+        password: passwordController.text,
+        cPassword: this.cPasswordController.text,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +42,6 @@ class _RegistrationState extends State<Registration> {
     return BlocListener<SignUpBloc, SignUpState>(
       bloc: bloc,
       listener: (context, state) {
-        // TODO: implement listener
         if (state is SignUpSuccess) {
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) {
@@ -75,14 +84,7 @@ class _RegistrationState extends State<Registration> {
             ),
             ElevatedButton(
               onPressed: () {
-                bloc.add(
-                  SignUpConfirm(
-                    email: emailController.text,
-                    name: nameController.text,
-                    password: passwordController.text,
-                    cPassword: this.cPasswordController.text,
-                  ),
-                );
+                this.onPressedRegistrateButton(bloc);
               },
               child: SizedBox(
                 child: Center(

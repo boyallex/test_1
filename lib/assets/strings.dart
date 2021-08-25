@@ -11,5 +11,13 @@ class Strings {
   static const log_in = "Log in";
   static const reg = "Registration";
   static const login = "Login";
+  
+}
+
+class WarningStrings {
+  const WarningStrings._();
+
   static const invalid_log_or_pass = "Invalid login or password";
+  static const unentereing_name = "You didn't enter your name";
+  static const passwords_not_equal = "Passwords are not equal";
 }
