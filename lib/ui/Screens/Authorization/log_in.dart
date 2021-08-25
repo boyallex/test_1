@@ -24,14 +24,6 @@ class _LogInState extends State<LogIn> {
   final bloc = LoginBloc();
   bool isWarningVisible = false;
 
-  void onPressedLoginButton() {
-    bloc.add(LoginCompare(
-      login: loginController.text,
-      password: passwordController.text,
-    ));
-    this.isWarningVisible = true;
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginBloc, LoginState>(
@@ -70,7 +62,7 @@ class _LogInState extends State<LogIn> {
                 if (state is LoginFailed) {
                   return WarningField(
                     isVisible: isWarningVisible,
-                    text: Strings.invalid_log_or_pass,
+                    text: WarningStrings.invalid_log_or_pass,
                   );
                 } else {
                   return Container();
@@ -94,5 +86,13 @@ class _LogInState extends State<LogIn> {
         ),
       ),
     );
+  }
+  
+  void onPressedLoginButton() {
+    bloc.add(LoginCompare(
+      login: loginController.text,
+      password: passwordController.text,
+    ));
+    this.isWarningVisible = true;
   }
 }
