@@ -11,4 +11,5 @@ class Strings {
   static const log_in = "Log in";
   static const reg = "Registration";
   static const login = "Login";
+  static const invalid_log_or_pass = "Invalid login or password";
 }

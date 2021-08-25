@@ -20,7 +20,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     // TODO: implement mapEventToState
     if (event is LoginCompare) {
       final data = await service.getData();
-      final validator = LoginValidator(data: data, login: event.login, password: event.password);
+      final validator = LoginValidator(
+        data: data,
+        login: event.login,
+        password: event.password,
+      );
+
       if (validator.isCorrect) {
         yield LoginSuccess();
       } else {

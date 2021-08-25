@@ -31,19 +31,19 @@ class _LogInState extends State<LogIn> {
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) {
             return MainScreen();
-          }), (route) => false);
+          }), (route) => true);
         }
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Authorization"),
+          title: Text(Strings.Auth),
         ),
         body: Column(
           children: [
+            
             Padding(
               padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
               child: TextField(
-                // obscureText: true,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: Strings.login,
@@ -72,7 +72,7 @@ class _LogInState extends State<LogIn> {
                 if (state is LoginFailed) {
                   return WarningField(
                     isVisible: isWarningVisible,
-                    text: "Invalid login or password",
+                    text: Strings.invalid_log_or_pass,
                   );
                 }else {
                   return Container();

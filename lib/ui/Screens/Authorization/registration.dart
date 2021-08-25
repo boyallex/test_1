@@ -51,8 +51,9 @@ class _RegistrationState extends State<Registration> {
               child: EnteringField(Strings.name, false, nameController),
             ),
             Padding(
-                padding: pad,
-                child: EnteringField(Strings.email, false, emailController)),
+              padding: pad,
+              child: EnteringField(Strings.email, false, emailController),
+            ),
             Padding(
               padding: pad,
               child: EnteringField(Strings.password, true, passwordController),

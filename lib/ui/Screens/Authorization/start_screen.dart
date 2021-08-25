@@ -16,7 +16,7 @@ class _StartScreenState extends State<StartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Authorization"),
+        title: Text(Strings.Auth),
       ),
       body: Center(
         child: Row(
