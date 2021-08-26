@@ -61,7 +61,7 @@ class _LogInState extends State<LogIn> {
                 if (state is LoginFailed) {
                   return WarningField(
                     isVisible: true,
-                    text: WarningStrings.invalid_log_or_pass,
+                    text: state.warning,
                   );
                 } else {
                   return Container();

@@ -30,7 +30,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       if (validator.isCorrect) {
         yield LoginSuccess();
       } else {
-        yield LoginFailed();
+        yield LoginFailed(warning: validator.warning);
       }
     }
   }

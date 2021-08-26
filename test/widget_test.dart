@@ -35,7 +35,7 @@ void main() {
     //act
     var result = validator.isCorrectEmail();
     //assert
-    expect(result, isEqual(true));
+    expect(result, true);
     
   });
   

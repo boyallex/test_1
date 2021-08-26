@@ -1,3 +1,4 @@
+import 'package:test_1/assets/strings.dart';
 import 'package:test_1/modules/login_data.dart';
 
 /// Класс для обработки данных логинизации.
@@ -14,6 +15,7 @@ class LoginValidator {
   }) {
     this.isCorrect = this._isCorrect();
   }
+  String get warning => WarningStrings.invalid_log_or_pass;
 
   bool _isCorrect() {
     // ищем логин
