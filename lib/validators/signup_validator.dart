@@ -43,14 +43,14 @@ class SignUpValidator {
       this._problemType = WarningStrings.invalid_email;
       return false;
     } else {
-      bool isAted = false;
-      int i = 1;
-      while (this.email[i - 1] != "@" && i < this.email.length) {
-        if (this.email[i] == "@") {
-          isAted = true;
-        }
-        i++;
-      }
+      bool isAted =this.email.contains("@");
+      // int i = 1;
+      // while (this.email[i - 1] != "@" && i < this.email.length) {
+      //   if (this.email[i] == "@") {
+      //     isAted = true;
+      //   }
+      //   i++;
+      // }
       this._problemType = isAted ? " " : WarningStrings.invalid_email;
       return isAted;
     }
