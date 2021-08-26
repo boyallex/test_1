@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:test_1/main.dart';
-import 'package:test_1/models/signup_validator.dart';
+import 'package:test_1/validators/signup_validator.dart';
 
 void main() {
   // testWidgets('Counter increments smoke test', (WidgetTester tester) async {
@@ -28,15 +28,15 @@ void main() {
   //   expect(find.text('0'), findsNothing);
   //   expect(find.text('1'), findsOneWidget);
   // });
-  // test('Тест валидатора для логина', () {
-  //   // проверка email
-  //   //arrange
-  //   final SignUpValidator validator = SignUpValidator("Алексей", "fbenkov@mail.ru", "пароль");
-  //   //act
-  //   var result = validator.isCorrectEmail();
-  //   //assert
-  //   expect(result, true);
+  test('Тест валидатора для логина', () {
+    // проверка email
+    //arrange
+    final SignUpValidator validator = SignUpValidator("Алексей", "fbenkov@mail.ru", "пароль", "пароль");
+    //act
+    var result = validator.isCorrectEmail();
+    //assert
+    expect(result, isEqual(true));
     
-  // });
+  });
   
 }

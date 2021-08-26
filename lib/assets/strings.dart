@@ -20,4 +20,8 @@ class WarningStrings {
   static const invalid_log_or_pass = "Invalid login or password";
   static const unentereing_name = "You didn't enter your name";
   static const passwords_not_equal = "Passwords are not equal";
+  static const invalid_email = "Invalid email";
+  static const passwords_easy = "Password is too easy";
+  static const password_has_to_contain = "Password has to contain latin letters and numbers!";
+  
 }

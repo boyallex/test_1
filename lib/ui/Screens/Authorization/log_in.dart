@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_1/assets/strings.dart';
 import 'package:test_1/bloc/login_bloc/login_bloc.dart';
 import 'package:test_1/ui/Screens/main/main_screen.dart';
-import 'package:test_1/ui/Widgets/EnteringField.dart';
-import 'package:test_1/ui/Widgets/warning_field.dart';
+import 'package:test_1/ui/widgets/entering_field.dart';
+import 'package:test_1/ui/widgets/warning_field.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({Key? key}) : super(key: key);
@@ -22,7 +22,6 @@ class _LogInState extends State<LogIn> {
   final passwordController = TextEditingController();
   //
   final bloc = LoginBloc();
-  bool isWarningVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +60,7 @@ class _LogInState extends State<LogIn> {
               builder: (context, state) {
                 if (state is LoginFailed) {
                   return WarningField(
-                    isVisible: isWarningVisible,
+                    isVisible: true,
                     text: WarningStrings.invalid_log_or_pass,
                   );
                 } else {
@@ -70,9 +69,7 @@ class _LogInState extends State<LogIn> {
               },
             ),
             ElevatedButton(
-              onPressed: () {
-                this.onPressedLoginButton();
-              },
+              onPressed: this.onPressedLoginButton,
               child: SizedBox(
                 child: Center(
                   child: Text(Strings.log_in),
@@ -87,12 +84,11 @@ class _LogInState extends State<LogIn> {
       ),
     );
   }
-  
+
   void onPressedLoginButton() {
     bloc.add(LoginCompare(
       login: loginController.text,
       password: passwordController.text,
     ));
-    this.isWarningVisible = true;
   }
 }

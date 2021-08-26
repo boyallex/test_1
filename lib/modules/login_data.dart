@@ -1,7 +1,8 @@
+/// класс для хранения данных с БД
 class LoginData {
   final String login;
   final String password;
-
+  
   LoginData({required this.login, required this.password});
 
   factory LoginData.fromJson(Map<String, dynamic> json) {

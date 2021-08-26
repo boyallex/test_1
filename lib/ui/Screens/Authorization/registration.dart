@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_1/assets/strings.dart';
 import 'package:test_1/bloc/sign_up_bloc/sign_up_bloc.dart';
 import 'package:test_1/ui/Screens/main/main_screen.dart';
-import 'package:test_1/ui/Widgets/EnteringField.dart';
-import 'package:test_1/ui/Widgets/warning_field.dart';
+import 'package:test_1/ui/widgets/entering_field.dart';
+import 'package:test_1/ui/widgets/warning_field.dart';
 
 class Registration extends StatefulWidget {
   const Registration({Key? key}) : super(key: key);
@@ -19,24 +19,11 @@ class _RegistrationState extends State<Registration> {
   final passwordController = TextEditingController();
   final cPasswordController = TextEditingController();
 
-  void onConfirmData() {}
-  void onPressedRegistrateButton(bloc) {
-    bloc.add(
-      SignUpConfirm(
-        email: emailController.text,
-        name: nameController.text,
-        password: passwordController.text,
-        cPassword: this.cPasswordController.text,
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     const EdgeInsets pad = EdgeInsets.only(left: 10, right: 10, bottom: 10);
-    // BlocProvider _bloc = BlocProvider.of(context);
+
     final bloc = SignUpBloc();
-    bool isWarningVisible = false;
     String warning = "";
 
     return BlocListener<SignUpBloc, SignUpState>(
@@ -76,10 +63,12 @@ class _RegistrationState extends State<Registration> {
               bloc: bloc,
               builder: (context, state) {
                 if (state is SignUpFailed) {
-                  isWarningVisible = true;
                   warning = state.warning;
+                  return WarningField(isVisible: true, text: warning);
                 }
-                return WarningField(isVisible: isWarningVisible, text: warning);
+                else {
+                  return Container();
+                }
               },
             ),
             ElevatedButton(
@@ -96,6 +85,17 @@ class _RegistrationState extends State<Registration> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  void onPressedRegistrateButton(bloc) {
+    bloc.add(
+      SignUpConfirm(
+        email: emailController.text,
+        name: nameController.text,
+        password: passwordController.text,
+        cPassword: this.cPasswordController.text,
       ),
     );
   }

@@ -9,6 +9,7 @@ import 'package:test_1/validators/login_validator.dart';
 part 'login_event.dart';
 part 'login_state.dart';
 
+/// Если event loginComapre, тогда Bloc обращается к [LoginService]
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final service = LoginService();
   LoginBloc() : super(LoginInitial());
@@ -17,7 +18,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   Stream<LoginState> mapEventToState(
     LoginEvent event,
   ) async* {
-    // TODO: implement mapEventToState
+    
     if (event is LoginCompare) {
       final data = await service.getData();
       final validator = LoginValidator(

@@ -11,7 +11,6 @@ class WarningField extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          // color: Colors.red.shade300,
           child: Center(
             child: Text(
               this.text,

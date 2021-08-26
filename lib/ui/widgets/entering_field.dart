@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class EnteringField extends StatelessWidget {
-  late String? text;
-  late TextEditingController? controller;
+  final String? text;
+  final TextEditingController? controller;
   late bool isCorrect = true;
-  late bool isPassword;
+  final bool isPassword;
   EnteringField(this.text, this.isPassword,[this.controller, this.isCorrect = true]);
   
 

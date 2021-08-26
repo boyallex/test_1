@@ -8,7 +8,6 @@ part 'sign_up_event.dart';
 part 'sign_up_state.dart';
 
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
-  // SignUpValidator validator;
 
   SignUpBloc() : super(SignUpInitial());
 
@@ -16,8 +15,6 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   Stream<SignUpState> mapEventToState(
     SignUpEvent event,
   ) async* {
-    // TODO: implement mapEventToState
-
     if (event is SignUpConfirm) {
       final validator = SignUpValidator(
         event.name,
