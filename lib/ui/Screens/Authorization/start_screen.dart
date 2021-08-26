@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:test_1/assets/strings.dart';
 import 'package:test_1/ui/Screens/Authorization/log_in.dart';
 import 'package:test_1/ui/Screens/Authorization/registration.dart';
+import 'package:test_1/ui/Screens/authorization/authorization.dart';
+
+enum PageType {
+  authorization,
+  login,
+}
 
 class StartScreen extends StatefulWidget {
   const StartScreen({Key? key}) : super(key: key);
@@ -24,7 +30,8 @@ class _StartScreenState extends State<StartScreen> {
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return LogIn();
+                  // return LogIn();
+                  return Authorization(type: PageType.authorization,);
                 }));
               },
               child: SizedBox(
