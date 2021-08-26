@@ -89,7 +89,7 @@ class _RegistrationState extends State<Registration> {
     );
   }
 
-  void onPressedRegistrateButton(bloc) {
+  void onPressedRegistrateButton(Bloc bloc) {
     bloc.add(
       SignUpConfirm(
         email: emailController.text,
