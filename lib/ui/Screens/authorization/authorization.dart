@@ -5,17 +5,18 @@ import 'package:test_1/bloc/auth_bloc/auth_bloc.dart';
 import 'package:test_1/ui/Screens/Authorization/start_screen.dart';
 import 'package:test_1/ui/Screens/authorization/log_in_fields.dart';
 import 'package:test_1/ui/Screens/authorization/sign_up_fields.dart';
+import 'package:test_1/ui/Screens/main/main_screen.dart';
 import 'package:test_1/ui/Widgets/warning_field.dart';
 
 class Authorization extends StatelessWidget {
   PageType? type;
   Authorization({required this.type});
-  var nameController;
-  var emailController;
-  var passwordController;
-  var cPasswordController;
 
-  // final bloc = SignUpBloc();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController cPasswordController = TextEditingController();
+
   late String warning = "";
 
   @override
@@ -23,8 +24,16 @@ class Authorization extends StatelessWidget {
     final bloc = AuthBloc();
 
     return BlocListener<AuthBloc, AuthState>(
+      bloc: bloc,
       listener: (context, state) {
-        // TODO: implement listener
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (context) {
+              return MainScreen();
+            },
+          ),
+          (route) => true,
+        );
       },
       child: Scaffold(
         appBar: AppBar(
@@ -35,17 +44,21 @@ class Authorization extends StatelessWidget {
             // верстка полей
             getFields(this.type!),
             // блок билдер, контролирующий поле ошибок
-            // getBloc(this.type!, bloc),
             BlocBuilder<AuthBloc, AuthState>(
-                bloc: bloc,
-                builder: (context, state) {
-                  if (state is SignUpFailed) {
-                    warning = state.warning;
-                    return WarningField(isVisible: true, text: warning);
-                  } else {
-                    return Container();
-                  }
-                }),
+              bloc: bloc,
+              builder: (context, state) {
+                if ((state is SignUpFailed) ) {
+                  warning = state.warning;
+                  return WarningField(isVisible: true, text: warning);
+                } else if (state is LoginFailed) {
+                  warning = state.warning;
+                  return WarningField(isVisible: true, text: warning);
+                }
+                else {
+                  return Container();
+                }
+              },
+            ),
             ElevatedButton(
               onPressed: () {
                 type == PageType.authorization
