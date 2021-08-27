@@ -31,7 +31,7 @@ class _StartScreenState extends State<StartScreen> {
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   // return LogIn();
-                  return Authorization(type: PageType.authorization,);
+                  return Authorization(type: PageType.login,);
                 }));
               },
               child: SizedBox(
@@ -45,7 +45,9 @@ class _StartScreenState extends State<StartScreen> {
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return Registration();
+                  return Authorization(
+                    type: PageType.authorization,
+                  );
                 }));
               },
               child: SizedBox(

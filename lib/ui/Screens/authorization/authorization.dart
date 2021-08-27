@@ -5,16 +5,17 @@ import 'package:test_1/bloc/login_bloc/login_bloc.dart';
 import 'package:test_1/bloc/sign_up_bloc/sign_up_bloc.dart';
 import 'package:test_1/ui/Screens/Authorization/start_screen.dart';
 import 'package:test_1/ui/Screens/authorization/log_in_fields.dart';
+import 'package:test_1/ui/Screens/authorization/sign_up_fields.dart';
 import 'package:test_1/ui/Widgets/entering_field.dart';
 import 'package:test_1/ui/Widgets/warning_field.dart';
 
 class Authorization extends StatelessWidget {
   PageType? type;
   Authorization({required this.type});
-  // final nameController = TextEditingController();
-  // final emailController = TextEditingController();
-  // final passwordController = TextEditingController();
-  // final cPasswordController = TextEditingController();
+  var nameController;
+  var emailController;
+  var passwordController;
+  var cPasswordController;
 
   // final bloc = SignUpBloc();
   late String warning = "";
@@ -103,11 +104,18 @@ class Authorization extends StatelessWidget {
   }
 
   Widget getFields(PageType authType) {
+    var fields;
     if (authType == PageType.login) {
-      return LogInFields();
+      fields = LogInFields();
+      this.emailController = fields.emailController;
+      this.passwordController = fields.passwordController;
     } else if (authType == PageType.authorization) {
-      return LogInFields();
+      fields = SignUpFields();
+      this.emailController = fields.emailController;
+      this.passwordController = fields.passwordController;
+      this.nameController = fields.nameController;
+      this.cPasswordController = fields.cPasswordController;
     }
-    return Container();
+    return fields;
   }
 }
