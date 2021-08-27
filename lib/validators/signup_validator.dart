@@ -12,7 +12,11 @@ class SignUpValidator {
 
   String _problemType = "";
 
-  SignUpValidator(this.name, this.email, this.password, this.cPassword) {
+  SignUpValidator(
+      {required this.name,
+      required this.email,
+      required this.password,
+      required this.cPassword}) {
     this._isCorrect = isCorrectEmail() &&
         isCorrectName() &&
         isCorrectPassword() &&

@@ -1,14 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:test_1/bloc/login_bloc/login_bloc.dart';
 import 'package:test_1/modules/login_data.dart';
-import 'package:test_1/services/auth_service.dart';
-
 import '../test_globals.dart' as globals;
 
-/// Производится запрос в Базу Данных
-class LoginService {
+class AuthService {
+  AuthService();
 
-  LoginService();
+  Future signUp(String name, String login, String password) async {
+    final fireAuth = FirebaseAuth.instance;
+    return fireAuth.createUserWithEmailAndPassword(
+        email: login, password: password);
+  }
+
+  Future<dynamic> signOut() async {
+    final fireAuth = FirebaseAuth.instance;
+    return Future.wait([fireAuth.signOut()]);
+  }
 
   Future<List<LoginData>> getData() async {
     final data = globals.json;
@@ -20,11 +26,11 @@ class LoginService {
           .toList(),
     );
   }
+
   Future signIn(String login, String password) {
     return FirebaseAuth.instance.signInWithEmailAndPassword(
       email: login,
       password: password,
     );
   }
-  
 }

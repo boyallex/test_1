@@ -1,7 +1,8 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:test_1/services/auth_service.dart';
+import 'package:test_1/validators/signup_validator.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -13,7 +14,24 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Stream<AuthState> mapEventToState(
     AuthEvent event,
   ) async* {
-    // TODO: implement mapEventToState
-    
+    final service = AuthService();
+    if (event is LoginCompare) {
+      service.signIn(event.login, event.password);
+    } else if (event is SignUpConfirm) {
+      final validator = SignUpValidator(
+        name: event.name,
+        email: event.email,
+        password: event.password,
+        cPassword: event.cPassword,
+      );
+      if (validator.isCorrect) {
+        service.signUp(event.name, event.email, event.password);
+        yield SignUpSuccess();
+      } else {
+        yield SignUpFailed(
+          warning: validator.warning(),
+        );
+      }
+    }
   }
 }

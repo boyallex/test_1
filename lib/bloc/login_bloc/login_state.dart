@@ -1,13 +1,13 @@
-part of 'login_bloc.dart';
+// part of 'login_bloc.dart';
 
-@immutable
-abstract class LoginState {}
+// @immutable
+// abstract class LoginState {}
 
-class LoginInitial extends LoginState {}
-class LoginSuccess extends LoginState {}
-class LoginFailed extends LoginState {
-  final String warning;
+// class LoginInitial extends LoginState {}
+// class LoginSuccess extends LoginState {}
+// class LoginFailed extends LoginState {
+//   final String warning;
 
-  LoginFailed({required this.warning});
-}
+//   LoginFailed({required this.warning});
+// }
 
