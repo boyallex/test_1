@@ -23,7 +23,6 @@ class Authorization extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = type == PageType.authorization ? SignUpBloc() : LoginBloc();
-    const EdgeInsets pad = EdgeInsets.only(left: 10, right: 10, bottom: 10);
 
     return Scaffold(
       appBar: AppBar(
