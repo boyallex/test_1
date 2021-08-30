@@ -32,9 +32,13 @@ class AuthService {
 
   Future signIn(String login, String password) async {
     await Firebase.initializeApp();
-    return FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: login,
-      password: password,
-    );
+    try {
+      return FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: login,
+        password: password,
+      );
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    }
   }
 }

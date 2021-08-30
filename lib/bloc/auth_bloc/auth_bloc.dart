@@ -16,7 +16,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async* {
     final service = AuthService();
     if (event is LoginCompare) {
-      service.signIn(event.login, event.password);
+      var result = service.signIn(event.login, event.password);
+      if (result != null) {
+        // yield LoginFailed(warning: );
+        yield LoginSuccess();
+      }
+      else  {
+        
+      }
     } else if (event is SignUpConfirm) {
       final validator = SignUpValidator(
         name: event.name,
