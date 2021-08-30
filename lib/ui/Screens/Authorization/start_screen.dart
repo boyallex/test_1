@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:test_1/assets/strings.dart';
-import 'package:test_1/ui/Screens/Authorization/log_in.dart';
-import 'package:test_1/ui/Screens/Authorization/registration.dart';
-import 'package:test_1/ui/Screens/authorization/authorization.dart';
+import 'package:test_1/ui/Screens/Authorization/authorization.dart';
 
 enum PageType {
-  authorization,
+  auth,
   login,
 }
 
@@ -29,10 +27,7 @@ class _StartScreenState extends State<StartScreen> {
           children: [
             ElevatedButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  // return LogIn();
-                  return Authorization(type: PageType.login,);
-                }));
+                Navigator.pushNamed(context, 'login');  
               },
               child: SizedBox(
                 child: Center(
@@ -44,11 +39,7 @@ class _StartScreenState extends State<StartScreen> {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return Authorization(
-                    type: PageType.authorization,
-                  );
-                }));
+                Navigator.pushNamed(context, "sign_up");
               },
               child: SizedBox(
                 child: Center(

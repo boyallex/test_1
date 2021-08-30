@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_1/assets/strings.dart';
 import 'package:test_1/bloc/auth_bloc/auth_bloc.dart';
+import 'package:test_1/ui/Screens/Authorization/log_in_fields.dart';
+import 'package:test_1/ui/Screens/Authorization/sign_up_fields.dart';
 import 'package:test_1/ui/Screens/Authorization/start_screen.dart';
-import 'package:test_1/ui/Screens/authorization/log_in_fields.dart';
-import 'package:test_1/ui/Screens/authorization/sign_up_fields.dart';
 import 'package:test_1/ui/Screens/main/main_screen.dart';
-import 'package:test_1/ui/Widgets/warning_field.dart';
+import 'package:test_1/ui/widgets/warning_field.dart';
 
 class Authorization extends StatelessWidget {
-  PageType? type;
+  PageType type;
   Authorization({required this.type});
 
   TextEditingController nameController = TextEditingController();
@@ -26,14 +26,16 @@ class Authorization extends StatelessWidget {
     return BlocListener<AuthBloc, AuthState>(
       bloc: bloc,
       listener: (context, state) {
-        Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-            builder: (context) {
-              return MainScreen();
-            },
-          ),
-          (route) => true,
-        );
+        if (state is LoginSuccess || state is SignUpSuccess) {
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) {
+                return MainScreen();
+              },
+            ),
+            (route) => true,
+          );
+        }
       },
       child: Scaffold(
         appBar: AppBar(
@@ -42,26 +44,25 @@ class Authorization extends StatelessWidget {
         body: Column(
           children: [
             // верстка полей
-            getFields(this.type!),
+            getFields(this.type),
             // блок билдер, контролирующий поле ошибок
             BlocBuilder<AuthBloc, AuthState>(
               bloc: bloc,
               builder: (context, state) {
-                if ((state is SignUpFailed) ) {
+                if ((state is SignUpFailed)) {
                   warning = state.warning;
                   return WarningField(isVisible: true, text: warning);
                 } else if (state is LoginFailed) {
                   warning = state.warning;
                   return WarningField(isVisible: true, text: warning);
-                }
-                else {
+                } else {
                   return Container();
                 }
               },
             ),
             ElevatedButton(
               onPressed: () {
-                type == PageType.authorization
+                type == PageType.auth
                     ? this.onPressedRegistrateButton(bloc)
                     : this.onPressedLoginButton(bloc);
               },
@@ -99,42 +100,13 @@ class Authorization extends StatelessWidget {
     );
   }
 
-  // BlocBuilder getBloc(PageType authType, dynamic bloc) {
-  //   if (authType == PageType.authorization) {
-  //     return BlocBuilder<AuthBloc, AuthState>(
-  //         bloc: bloc,
-  //         builder: (context, state) {
-  //           if (state is SignUpFailed) {
-  //             warning = state.warning;
-  //             return WarningField(isVisible: true, text: warning);
-  //           } else {
-  //             return Container();
-  //           }
-  //         });
-  //   } else {
-  //     return BlocBuilder<Bloc, LoginState>(
-  //       bloc: bloc,
-  //       builder: (context, state) {
-  //         if (state is LoginFailed) {
-  //           return WarningField(
-  //             isVisible: true,
-  //             text: state.warning,
-  //           );
-  //         } else {
-  //           return Container();
-  //         }
-  //       },
-  //     );
-  //   }
-  // }
-
   Widget getFields(PageType authType) {
     var fields;
     if (authType == PageType.login) {
       fields = LogInFields();
       this.emailController = fields.emailController;
       this.passwordController = fields.passwordController;
-    } else if (authType == PageType.authorization) {
+    } else if (authType == PageType.auth) {
       fields = SignUpFields();
       this.emailController = fields.emailController;
       this.passwordController = fields.passwordController;
@@ -144,5 +116,3 @@ class Authorization extends StatelessWidget {
     return fields;
   }
 }
-
-class SubjectState {}
