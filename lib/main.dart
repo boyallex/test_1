@@ -5,6 +5,7 @@ import 'package:test_1/ui/Screens/main/main_screen.dart';
 import 'ui/Screens/Authorization/start_screen.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
 }
