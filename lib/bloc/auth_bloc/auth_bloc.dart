@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 import 'package:test_1/services/auth_service.dart';
 import 'package:test_1/validators/signup_validator.dart';
@@ -16,13 +17,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async* {
     final service = AuthService();
     if (event is LoginCompare) {
-      var result = service.signIn(event.login, event.password);
-      if (result != null) {
-        // yield LoginFailed(warning: );
-        yield LoginSuccess();
-      }
-      else  {
-        
+      try {
+        var result = await service.signIn(event.login, event.password);
+        // FirebaseAuth.instance.authStateChanges();
+         yield LoginSuccess();
+      } on FirebaseAuthException catch (e) {
+        print(e.message);
+        yield LoginFailed(warning: e.message!);
       }
     } else if (event is SignUpConfirm) {
       final validator = SignUpValidator(

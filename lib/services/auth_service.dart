@@ -7,14 +7,14 @@ class AuthService {
   AuthService();
 
   Future signUp(String name, String login, String password) async {
-    await Firebase.initializeApp();
+    // await Firebase.initializeApp();
     final fireAuth = FirebaseAuth.instance;
     return fireAuth.createUserWithEmailAndPassword(
         email: login, password: password);
   }
 
   Future<dynamic> signOut() async {
-    await Firebase.initializeApp();
+    // await Firebase.initializeApp();
     final fireAuth = FirebaseAuth.instance;
     return Future.wait([fireAuth.signOut()]);
   }
@@ -30,15 +30,11 @@ class AuthService {
     );
   }
 
-  Future signIn(String login, String password) async {
-    await Firebase.initializeApp();
-    try {
-      return FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: login,
-        password: password,
-      );
-    } on FirebaseAuthException catch (e) {
-      return e.message;
-    }
+  Future<UserCredential> signIn(String login, String password) async {
+    final user = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: login,
+      password: password,
+    );
+    return user;
   }
 }
