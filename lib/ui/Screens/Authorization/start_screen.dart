@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_1/assets/strings.dart';
-import 'package:test_1/ui/Screens/Authorization/authorization.dart';
 
-enum PageType {
-  auth,
-  login,
-}
+
 
 class StartScreen extends StatefulWidget {
   const StartScreen({Key? key}) : super(key: key);

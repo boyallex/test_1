@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_1/abstract/abstract.dart';
 import 'package:test_1/assets/strings.dart';
 import 'package:test_1/bloc/auth_bloc/auth_bloc.dart';
 import 'package:test_1/ui/Screens/Authorization/log_in_fields.dart';
 import 'package:test_1/ui/Screens/Authorization/sign_up_fields.dart';
-import 'package:test_1/ui/Screens/Authorization/start_screen.dart';
 import 'package:test_1/ui/Screens/main/main_screen.dart';
 import 'package:test_1/ui/widgets/warning_field.dart';
 
