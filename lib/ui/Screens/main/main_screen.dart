@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:test_1/bloc/profile_bloc/dev_emotional_bloc.dart';
+import 'package:test_1/services/profile_service.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -8,6 +10,8 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  DevEmotionalBloc _bloc = DevEmotionalBloc(ProfileService());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +27,6 @@ class _MainScreenState extends State<MainScreen> {
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.white),
                 shadowColor: MaterialStateProperty.all(Colors.white),
-                
               ),
             ),
             SizedBox(
@@ -33,7 +36,9 @@ class _MainScreenState extends State<MainScreen> {
               height: 30,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                this._bloc.mapEventToState(SuicideEvent());2
+              },
               child: Image(
                 image: AssetImage('images/give_up.jpg'),
               ),
