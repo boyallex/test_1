@@ -10,7 +10,8 @@ part 'dev_emotional_state.dart';
 
 class DevEmotionalBloc extends Bloc<DevEmotionalEvent, DevEmotionalState> {
   ProfileService service;
-  DevEmotionalBloc(this.service) : super(DevEmotionalInitial());
+  final String? uid;
+  DevEmotionalBloc(this.service, this.uid) : super(DevEmotionalInitial());
 
   @override
   Stream<DevEmotionalState> mapEventToState(

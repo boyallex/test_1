@@ -9,7 +9,7 @@ import 'package:test_1/ui/Screens/main/main_screen.dart';
 import 'package:test_1/ui/widgets/warning_field.dart';
 
 class Authorization extends StatelessWidget {
-  PageType type;
+  final PageType type;
   Authorization({required this.type});
 
   TextEditingController nameController = TextEditingController();
@@ -22,6 +22,7 @@ class Authorization extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = AuthBloc();
+    late String uid;
 
     return BlocListener<AuthBloc, AuthState>(
       bloc: bloc,
@@ -39,7 +40,7 @@ class Authorization extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text(Strings.Auth),
+          title: Text(AuthStrings.Auth),
         ),
         body: Column(
           children: [
@@ -68,7 +69,7 @@ class Authorization extends StatelessWidget {
               },
               child: SizedBox(
                 child: Center(
-                  child: Text(Strings.sign_up),
+                  child: Text(AuthStrings.sign_up),
                 ),
                 height: 40,
                 width: 150,

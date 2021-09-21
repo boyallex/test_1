@@ -14,11 +14,11 @@ class LogInFields extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 10),
-          child: EnteringField(Strings.login, false, emailController),
+          child: EnteringField(AuthStrings.login, false, emailController),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-          child: EnteringField(Strings.password, true, passwordController),
+          child: EnteringField(AuthStrings.password, true, passwordController),
         ),
       ],
     );

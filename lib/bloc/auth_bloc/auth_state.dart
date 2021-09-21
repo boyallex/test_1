@@ -5,7 +5,11 @@ abstract class AuthState {}
 
 class AuthInitial extends AuthState {}
 
-class LoginSuccess extends AuthState {}
+class LoginSuccess extends AuthState {
+  final String uid;
+  LoginSuccess(this.uid);
+  
+}
 
 class LoginFailed extends AuthState {
   final String warning;

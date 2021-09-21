@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:test_1/assets/strings.dart';
 
 
-
 class StartScreen extends StatefulWidget {
   const StartScreen({Key? key}) : super(key: key);
 
@@ -16,7 +15,7 @@ class _StartScreenState extends State<StartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(Strings.Auth),
+        title: Text(AuthStrings.Auth),
       ),
       body: Center(
         child: Row(
@@ -27,7 +26,7 @@ class _StartScreenState extends State<StartScreen> {
               },
               child: SizedBox(
                 child: Center(
-                  child: Text(Strings.log_in),
+                  child: Text(AuthStrings.log_in),
                 ),
                 width: 110,
                 height: 40,
@@ -39,7 +38,7 @@ class _StartScreenState extends State<StartScreen> {
               },
               child: SizedBox(
                 child: Center(
-                  child: Text(Strings.reg),
+                  child: Text(AuthStrings.reg),
                 ),
                 width: 110,
                 height: 40,

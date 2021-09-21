@@ -17,12 +17,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async* {
     final service = AuthService();
     if (event is LoginCompare) {
+      late final user;
+      late String uid;
+
       try {
-        var result = await service.signIn(event.login, event.password);
+        user = await service.signIn(event.login, event.password);
         // FirebaseAuth.instance.authStateChanges();
-         yield LoginSuccess();
+        
+        uid = user != null ? uid = user.user.uid: "";
+
+        yield LoginSuccess(uid);
       } on FirebaseAuthException catch (e) {
-        print(e.message);
         yield LoginFailed(warning: e.message!);
       }
     } else if (event is SignUpConfirm) {

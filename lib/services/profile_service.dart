@@ -1,6 +1,6 @@
 
 
-import 'package:firebase_database/firebase_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:test_1/abstract/abstract.dart';
 
 class ProfileService {
@@ -20,9 +20,9 @@ class ProfileService {
   //   }
   // }
 
-  DatabaseReference increment(ProfileButtonType type) {
-    DatabaseReference _ref = FirebaseDatabase.instance.reference().child("test");
-    return _ref;
+  void increment(ProfileButtonType type) {
+    final _ref = FirebaseFirestore.instance.collection(type.toString());
+    return;
     // switch (type) {
     //   case ProfileButtonType.suicide:
     //     _ref.set(suicide_value++);
