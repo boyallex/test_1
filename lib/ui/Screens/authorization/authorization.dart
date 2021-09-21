@@ -31,7 +31,7 @@ class Authorization extends StatelessWidget {
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
               builder: (context) {
-                return MainScreen();
+                return MainScreen(state.uid);
               },
             ),
             (route) => true,

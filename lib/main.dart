@@ -24,7 +24,6 @@ class MyApp extends StatelessWidget {
       ),
       home: StartScreen(),
       routes: {
-        'main': (context) => MainScreen(),
         'auth': (context) => StartScreen(),
         'login': (context) => Authorization(
               type: PageType.login,

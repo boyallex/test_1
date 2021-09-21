@@ -5,7 +5,7 @@ import 'package:test_1/services/profile_service.dart';
 
 class MainScreen extends StatelessWidget {
   final String? uid;
-  MainScreen({this.uid});  
+  MainScreen(this.uid);  
 
   @override
   Widget build(BuildContext context) {

@@ -1,12 +1,15 @@
 part of 'auth_bloc.dart';
 
 @immutable
-abstract class AuthState {}
+abstract class AuthState {
+  final String? uid = "";
+}
 
 class AuthInitial extends AuthState {}
 
 class LoginSuccess extends AuthState {
-  final String uid;
+  @override
+  final String? uid;
   LoginSuccess(this.uid);
   
 }
