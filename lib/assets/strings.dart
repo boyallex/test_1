@@ -1,5 +1,5 @@
-class Strings {
-  const Strings._();
+class AuthStrings {
+  const AuthStrings._();
 
   static const Auth = "Authorization";
   static const name = "Name";
@@ -23,5 +23,15 @@ class WarningStrings {
   static const invalid_email = "Invalid email";
   static const passwords_easy = "Password is too easy";
   static const password_has_to_contain = "Password has to contain latin letters and numbers!";
+  
+}
+
+class FirebaseString {
+  const FirebaseString._();
+
+  static const suicide = "Suicide";
+  static const bleat = "Bleat";
+  static const give_up = "Give_Up";
+
   
 }

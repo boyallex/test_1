@@ -19,19 +19,19 @@ class SignUpFields extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: EnteringField(Strings.name, false, nameController),
+            child: EnteringField(AuthStrings.name, false, nameController),
           ),
           Padding(
             padding: pad,
-            child: EnteringField(Strings.email, false, emailController),
+            child: EnteringField(AuthStrings.email, false, emailController),
           ),
           Padding(
             padding: pad,
-            child: EnteringField(Strings.password, true, passwordController),
+            child: EnteringField(AuthStrings.password, true, passwordController),
           ),
           Padding(
             padding: pad,
-            child: EnteringField(Strings.conf_pass, true, cPasswordController),
+            child: EnteringField(AuthStrings.conf_pass, true, cPasswordController),
           ),
         ],
       );
