@@ -10,27 +10,25 @@ part 'dev_emotional_event.dart';
 part 'dev_emotional_state.dart';
 
 class DevEmotionalBloc extends Bloc<DevEmotionalEvent, DevEmotionalState> {
-  ProfileService service;
-  // final String? uid;
-  DevEmotionalBloc(this.service) : super(DevEmotionalInitial());
+  DevEmotionalBloc() : super(DevEmotionalInitial());
+  ProfileService service = ProfileService(HiveFile().read().toString());
 
   @override
   Stream<DevEmotionalState> mapEventToState(
     DevEmotionalEvent event,
   ) async* {
-
+    String uid;
     // TODO: implement mapEventToState
-    if (event is SuicideEvent) {
-      this.service.increment(ProfileButtonType.suicide);
-      yield DevEmotionalSuicideSuccess();
-    } else if(event is BleatEvent) {
+    if (event is DevEmotionalStarted) {
+      uid = HiveFile().read().toString();
+      yield DevEmotionalInitial();
+    } else if (event is BleatEvent) {
       yield DevEmotionalBleatSuccess();
     } else if (event is GiveUpEvent) {
       yield DevEmotionalGiveUpSuccess();
-    }
-    else if (event is DevEmotionalStarted) { 
-      HiveFile().read();
-      yield DevEmotionalInitial();
+    } else if (event is SuicideEvent) {
+      this.service.increment(ProfileButtonType.suicide);
+      yield DevEmotionalSuicideSuccess();
     }
   }
 }

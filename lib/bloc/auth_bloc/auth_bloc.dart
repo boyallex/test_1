@@ -25,7 +25,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         // FirebaseAuth.instance.authStateChanges();
 
         uid = user != null ? user.user.uid : "";
-        HiveFile().write(uid); // записываем uid после входа
+        HiveFile().write(uid); // записываем uid после входаq@
 
         yield LoginSuccess(uid);
       } on FirebaseAuthException catch (e) {

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:test_1/bloc/profile_bloc/dev_emotional_bloc.dart';
+import 'package:test_1/services/hive_service.dart';
 import 'package:test_1/services/profile_service.dart';
 
 
 class MainScreen extends StatelessWidget {
   MainScreen();  
-  DevEmotionalBloc _bloc = DevEmotionalBloc(ProfileService());
+  DevEmotionalBloc _bloc = DevEmotionalBloc();
   @override
   Widget build(BuildContext context) {
-    
+    print(HiveFile().read().toString());
     return Scaffold(
       appBar: AppBar(),
       body: Container(

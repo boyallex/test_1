@@ -4,7 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:test_1/abstract/abstract.dart';
 
 class ProfileService {
-  ProfileService();
+  String? uid;
+  ProfileService(this.uid);
 
   // Future getData(ProfileButtonType type) {
   //   late final res;
@@ -20,18 +21,21 @@ class ProfileService {
   //   }
   // }
 
-  // Future<String> getUid(String uid) async { 
-  //   return FirebaseFirestore.instance.collection(uid);
-  // }
-
   void increment(ProfileButtonType type) {
-    final _ref = FirebaseFirestore.instance.collection(type.toString());
-    return;
-    // switch (type) {
-    //   case ProfileButtonType.suicide:
-    //     _ref.set(suicide_value++);
-    //     break;
-    //   default:
-    // }
+    final ref = FirebaseFirestore.instance.collection(this.uid!);
+    var count;
+    switch (type) {
+      case ProfileButtonType.suicide:
+        count = ref.doc("suicide");
+        print(count);
+        // ref.add(suicide_value++);
+        break;
+      case ProfileButtonType.give_up:
+        count = ref.doc("give_up");
+        print(count);
+        // ref.add(suicide_value++);
+        break;
+      default:
+    }
   }
 }
