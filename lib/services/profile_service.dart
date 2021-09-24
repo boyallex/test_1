@@ -20,6 +20,10 @@ class ProfileService {
   //   }
   // }
 
+  // Future<String> getUid(String uid) async { 
+  //   return FirebaseFirestore.instance.collection(uid);
+  // }
+
   void increment(ProfileButtonType type) {
     final _ref = FirebaseFirestore.instance.collection(type.toString());
     return;

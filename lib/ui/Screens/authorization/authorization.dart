@@ -22,7 +22,6 @@ class Authorization extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = AuthBloc();
-    late String uid;
 
     return BlocListener<AuthBloc, AuthState>(
       bloc: bloc,
@@ -31,7 +30,7 @@ class Authorization extends StatelessWidget {
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
               builder: (context) {
-                return MainScreen(state.uid);
+                return MainScreen();
               },
             ),
             (route) => true,

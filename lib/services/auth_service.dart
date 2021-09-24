@@ -6,7 +6,7 @@ import '../test_globals.dart' as globals;
 class AuthService {
   AuthService();
 
-  Future signUp(String name, String login, String password) async {
+  Future<UserCredential> signUp(String name, String login, String password) async {
     // await Firebase.initializeApp();
     final fireAuth = FirebaseAuth.instance;
     return fireAuth.createUserWithEmailAndPassword(

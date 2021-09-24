@@ -4,12 +4,11 @@ import 'package:test_1/services/profile_service.dart';
 
 
 class MainScreen extends StatelessWidget {
-  final String? uid;
-  MainScreen(this.uid);  
-
+  MainScreen();  
+  DevEmotionalBloc _bloc = DevEmotionalBloc(ProfileService());
   @override
   Widget build(BuildContext context) {
-    DevEmotionalBloc _bloc = DevEmotionalBloc(ProfileService(), this.uid);
+    
     return Scaffold(
       appBar: AppBar(),
       body: Container(
