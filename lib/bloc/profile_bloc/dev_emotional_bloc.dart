@@ -17,18 +17,20 @@ class DevEmotionalBloc extends Bloc<DevEmotionalEvent, DevEmotionalState> {
   Stream<DevEmotionalState> mapEventToState(
     DevEmotionalEvent event,
   ) async* {
-    String uid;
+    String uid = HiveFile().read().toString();
+    print(2);
     // TODO: implement mapEventToState
-    if (event is DevEmotionalStarted) {
-      uid = HiveFile().read().toString();
+    if (event is DevEmotionalStarted) {      
       yield DevEmotionalInitial();
     } else if (event is BleatEvent) {
-      yield DevEmotionalBleatSuccess();
+      int? count = this.service.increment(ProfileButtonType.bleat, 2);
+      yield DevEmotionalBleatSuccess(count);
     } else if (event is GiveUpEvent) {
-      yield DevEmotionalGiveUpSuccess();
+      int? count = this.service.increment(ProfileButtonType.give_up, 3);
+      yield DevEmotionalGiveUpSuccess(count );
     } else if (event is SuicideEvent) {
-      this.service.increment(ProfileButtonType.suicide);
-      yield DevEmotionalSuicideSuccess();
-    }
+      int? count = this.service.increment(ProfileButtonType.suicide, 3);
+      yield DevEmotionalSuicideSuccess(count);
+     }
   }
 }

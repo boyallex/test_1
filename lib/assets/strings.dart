@@ -32,6 +32,10 @@ class FirebaseString {
   static const suicide = "Suicide";
   static const bleat = "Bleat";
   static const give_up = "Give_Up";
-
   
+}
+class ProfileStrings {
+  const ProfileStrings._();
+
+  static const something_wrong = "Something went wrong";
 }
