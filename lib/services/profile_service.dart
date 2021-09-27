@@ -8,10 +8,8 @@ class ProfileService {
 
   Future<List<int?>> getAll() async {
     final String uid = (await localStorage.read())!;
-    final col = FirebaseFirestore.instance.collection(uid);
-    
+    final col = FirebaseFirestore.instance.collection(uid).doc("give_up");
     return [1, 2, 3];
-
   }
 
   Future<int?> increment(ProfileButtonType type, int count) async {

@@ -23,19 +23,15 @@ class DevEmotionalBloc extends Bloc<DevEmotionalEvent, DevEmotionalState> {
   Stream<DevEmotionalState> mapEventToState(
     DevEmotionalEvent event,
   ) async* {
-    String? uid = await HiveFile().read();
     print(2);
     // TODO: implement mapEventToState
     if (event is DevEmotionalStarted) {
+      service.getAll();
       yield DevEmotionalInitial([]);
     } else if (event is BleatEvent) {
       int? count = await this.service.increment(ProfileButtonType.bleat, 2);
       yield DevEmotionalBleatSuccess(count);
     } else if (event is GiveUpEvent) {
-      print("Здесь");
-     
-      final m = await FirebaseFirestore.instance.collection(uid!).doc("give_up").get();
-
       int? count = await this.service.increment(ProfileButtonType.give_up, 3);
       yield DevEmotionalGiveUpSuccess(count);
     } else if (event is SuicideEvent) {

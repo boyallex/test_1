@@ -40,7 +40,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         password: event.password,
         cPassword: event.cPassword,
       );
-      if (validator.isCorrect) {        
+      if (validator.isCorrect) {
+        service.signUp(event.email, event.email, event.password);    
         yield SignUpSuccess();
       } else {
         yield SignUpFailed(
