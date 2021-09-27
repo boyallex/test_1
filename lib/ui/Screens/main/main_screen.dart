@@ -3,10 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_1/assets/strings.dart';
 import 'package:test_1/bloc/profile_bloc/dev_emotional_bloc.dart';
 import 'package:test_1/services/hive_service.dart';
+import 'package:test_1/services/profile_service.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen();
-  final DevEmotionalBloc _bloc = DevEmotionalBloc();
+  final DevEmotionalBloc _bloc = DevEmotionalBloc(ProfileService());
   @override
   Widget build(BuildContext context) {
     this._bloc.add(DevEmotionalStarted());
