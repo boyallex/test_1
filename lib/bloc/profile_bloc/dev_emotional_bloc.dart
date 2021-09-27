@@ -13,11 +13,7 @@ part 'dev_emotional_state.dart';
 
 class DevEmotionalBloc extends Bloc<DevEmotionalEvent, DevEmotionalState> {
   final ProfileService service;
-  // final HiveFile localStorage;
   DevEmotionalBloc(this.service) : super(DevEmotionalInitial([]));
-  //  = ProfileService(HiveFile().read().toString());
-
-  
 
   @override
   Stream<DevEmotionalState> mapEventToState(
@@ -26,7 +22,7 @@ class DevEmotionalBloc extends Bloc<DevEmotionalEvent, DevEmotionalState> {
     print(2);
     // TODO: implement mapEventToState
     if (event is DevEmotionalStarted) {
-      service.getAll();
+      await service.getAll();
       yield DevEmotionalInitial([]);
     } else if (event is BleatEvent) {
       int? count = await this.service.increment(ProfileButtonType.bleat, 2);
