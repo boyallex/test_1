@@ -5,7 +5,7 @@ class HiveFile {
   @HiveField(0)
   HiveFile();
 
-  void write(String? uid) async {
+  Future<void> write(String? uid) async {
     final box = await Hive.openBox<String>("uid");
     box.put("uid", uid!);
   }

@@ -1,28 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:test_1/abstract/abstract.dart';
+import 'package:test_1/services/hive_service.dart';
 
 class ProfileService {
-  String? uid;
-  ProfileService(this.uid);
+  final HiveFile localStorage = HiveFile();
+  ProfileService();
 
-  // Future getData(ProfileButtonType type) {
-  //   late final res;
-  //   switch (type) {
-  //     case ProfileButtonType.suicide:
-  //       res = FirebaseDatabase.instance.reference().child("").get();
-  //       break;
-  //     case ProfileButtonType.bleat:
+  Future<List<int?>> getAll() async {
+    final String uid = (await localStorage.read())!;
+    final col = FirebaseFirestore.instance.collection(uid);
+    
+    return [1, 2, 3];
 
-  //     default:
-  //       res = 0;
-  //     return res;
-  //   }
-  // }
+  }
 
-
-
-  int? increment(ProfileButtonType type, int count) {
-    final ref = FirebaseFirestore.instance.collection(this.uid!);
+  Future<int?> increment(ProfileButtonType type, int count) async {
+    final String uid = (await localStorage.read())!;
+    final ref = FirebaseFirestore.instance.collection(uid);
     var count;
     switch (type) {
       case ProfileButtonType.suicide:

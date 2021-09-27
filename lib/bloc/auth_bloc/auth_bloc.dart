@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:meta/meta.dart';
 import 'package:test_1/services/auth_service.dart';
 import 'package:test_1/services/hive_service.dart';
@@ -25,7 +27,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         // FirebaseAuth.instance.authStateChanges();
 
         uid = user != null ? user.user.uid : "";
-        HiveFile().write(uid); // записываем uid после входаq@
+        HiveFile().write(uid); // записываем uid после входа
 
         yield LoginSuccess(uid);
       } on FirebaseAuthException catch (e) {
@@ -38,12 +40,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         password: event.password,
         cPassword: event.cPassword,
       );
-      if (validator.isCorrect) {
-        user = service.signUp(event.name, event.email, event.password);
-        // создаем и записываем файл для хранения id пользователя
-        uid = user != null ? user.user.uid : "";
-        HiveFile().write(uid);
-
+      if (validator.isCorrect) {        
         yield SignUpSuccess();
       } else {
         yield SignUpFailed(
