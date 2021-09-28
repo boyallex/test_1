@@ -20,7 +20,7 @@ class AuthService {
     };
     
     final String? uid = user != null ? user.user!.uid : "";
-    await FirebaseFirestore.instance.collection(uid!).add(userData);
+    await FirebaseFirestore.instance.collection("users").doc(uid).set(userData);
     return user;
   }
 

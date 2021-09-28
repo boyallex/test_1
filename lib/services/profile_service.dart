@@ -6,17 +6,18 @@ class ProfileService {
   final HiveFile localStorage = HiveFile();
   ProfileService();
 
-  Future<List<int?>> getAll() async {
+  Future<Map<String, dynamic>?> getAll() async {
     final String uid = (await localStorage.read())!;
-    final col = await FirebaseFirestore.instance.collection(uid).doc("give_up").get();
-    final data = col.data()!;
-    final List<int?> res = [data["give_up"], data["sucide"], data["bleat"]];
-    return res;
+    final data = await FirebaseFirestore.instance.collection("users").doc(uid).get();
+    // final data = col.data();
+    print(data.data());
+    // final List<int> res = [data.data()!["give_up"], data.data()!["sucide"], data.data()!["bleat"]];
+    return data.data();
   }
 
   Future<int?> increment(ProfileButtonType type, int count) async {
     final String uid = (await localStorage.read())!;
-    final ref = FirebaseFirestore.instance.collection(uid);
+    final ref = FirebaseFirestore.instance.collection("users");
     var count;
     switch (type) {
       case ProfileButtonType.suicide:

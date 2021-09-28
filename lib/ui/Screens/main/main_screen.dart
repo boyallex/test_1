@@ -11,7 +11,8 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     this._bloc.add(DevEmotionalStarted());
-    print(HiveFile().read().toString());
+
+    // print(HiveFile().read().toString());
 
     late int? suicide_count;
     late int? give_up_count;
@@ -21,6 +22,7 @@ class MainScreen extends StatelessWidget {
       bloc: this._bloc,
       listener: (context, state) {
         // TODO: implement listener
+        
       },
       child: Scaffold(
         appBar: AppBar(),
@@ -64,6 +66,8 @@ class MainScreen extends StatelessWidget {
                         return Text(give_up_count.toString());
                       }
                       else if (state is DevEmotionalInitial) {
+                        
+                        return Text(state.buttons!["give_up"].toString());
                         
                       }
                        else if (state is DevEmotionalFailed) {

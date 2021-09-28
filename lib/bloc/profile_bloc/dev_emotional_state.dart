@@ -4,7 +4,7 @@ part of 'dev_emotional_bloc.dart';
 abstract class DevEmotionalState {}
 
 class DevEmotionalInitial extends DevEmotionalState {
-  List<int> buttons;
+  Map<String, dynamic>? buttons;
   DevEmotionalInitial(this.buttons);
 }
 class DevEmotionalSuicideSuccess extends DevEmotionalState {
