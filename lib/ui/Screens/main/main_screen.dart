@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_1/abstract/abstract.dart';
 import 'package:test_1/assets/strings.dart';
 import 'package:test_1/bloc/profile_bloc/dev_emotional_bloc.dart';
 import 'package:test_1/services/hive_service.dart';
@@ -13,7 +14,7 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     this._bloc.add(DevEmotionalStarted());
-
+    
     return BlocListener<DevEmotionalBloc, DevEmotionalState>(
       bloc: this._bloc,
       listener: (context, state) {
@@ -25,28 +26,19 @@ class MainScreen extends StatelessWidget {
           child: Column(
             children: [
               ProfileButton('images/suicide.jpg', () {
-                _bloc.add(SuicideEvent());
+                _bloc.add(DevEmotionalPushed(ProfileButtonType.suicide));
               }),
               SizedBox(
                 child: Center(
                   child: BlocBuilder<DevEmotionalBloc, DevEmotionalState>(
                     bloc: this._bloc,
-                    builder: (context, state) {
-                      if (state is DevEmotionalSuicideSuccess) {
-                        return Text(state.counter.toString());
-                      } else if (state is DevEmotionalInitial) {
-                        return Text(state.buttons!["suicide"].toString());
-                      } else if (state is DevEmotionalFailed) {
-                        return Text(state.warning!);
-                      }
-                      return Text(ProfileStrings.something_wrong);
-                    },
+                    builder: suicideBuilder,
                   ),
                 ),
                 height: 30,
               ),
               ProfileButton('images/give_up.jpg', () {
-                _bloc.add(GiveUpEvent());
+                _bloc.add(DevEmotionalPushed(ProfileButtonType.give_up));
               }),
               SizedBox(
                 child: Center(
@@ -58,7 +50,7 @@ class MainScreen extends StatelessWidget {
                 height: 30,
               ),
               ProfileButton('images/bleat.jpg', () {
-                _bloc.add(BleatEvent());
+                _bloc.add(DevEmotionalPushed(ProfileButtonType.bleat));
               }),
               SizedBox(
                 child: Center(
@@ -77,8 +69,8 @@ class MainScreen extends StatelessWidget {
   }
 
   Widget giveUpBuilder(BuildContext context, DevEmotionalState state) {
-    if (state is DevEmotionalGiveUpSuccess) {
-      return Text(state.counter.toString());
+    if (state is DevEmotionalSuccess) {
+      return Text(state.counters["give_up"].toString());
     } else if (state is DevEmotionalInitial) {
       return Text(state.buttons!["give_up"].toString());
     } else if (state is DevEmotionalFailed) {
@@ -88,8 +80,8 @@ class MainScreen extends StatelessWidget {
   }
 
   Widget bleatBuilder(BuildContext context, DevEmotionalState state) {
-    if (state is DevEmotionalBleatSuccess) {
-      return Text(state.counter.toString());
+    if (state is DevEmotionalSuccess) {
+      return Text(state.counters["bleat"].toString());
     } else if (state is DevEmotionalInitial) {
       return Text(state.buttons!["bleat"].toString());
     } else if (state is DevEmotionalFailed) {
@@ -99,8 +91,8 @@ class MainScreen extends StatelessWidget {
   }
 
   Widget suicideBuilder(BuildContext context, DevEmotionalState state) {
-    if (state is DevEmotionalSuicideSuccess) {
-      return Text(state.counter.toString());
+    if (state is DevEmotionalSuccess) {
+      return Text(state.counters["suicide"].toString());
     } else if (state is DevEmotionalInitial) {
       return Text(state.buttons!["suicide"].toString());
     } else if (state is DevEmotionalFailed) {

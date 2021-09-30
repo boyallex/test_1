@@ -23,3 +23,8 @@ class DevEmotionalFailed extends DevEmotionalState {
   final String? warning;
   DevEmotionalFailed(this.warning);
 }
+class DevEmotionalSuccess extends DevEmotionalState {
+  final Map<String, int> counters;
+
+  DevEmotionalSuccess(this.counters);
+}
