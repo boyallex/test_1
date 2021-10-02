@@ -3,23 +3,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_1/abstract/abstract.dart';
 import 'package:test_1/assets/strings.dart';
 import 'package:test_1/bloc/profile_bloc/dev_emotional_bloc.dart';
-import 'package:test_1/services/hive_service.dart';
 import 'package:test_1/services/profile_service.dart';
 import 'package:test_1/ui/Screens/main/profile_button.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen();
-  final DevEmotionalBloc _bloc = DevEmotionalBloc(ProfileService());
+  final DevEmotionalBloc _bloc = DevEmotionalBloc(ProfileService())
+    ..add(DevEmotionalStarted());
 
   @override
   Widget build(BuildContext context) {
-    this._bloc.add(DevEmotionalStarted());
-    
+    // this._bloc.add(DevEmotionalStarted());
+
     return BlocListener<DevEmotionalBloc, DevEmotionalState>(
       bloc: this._bloc,
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+      listener: (context, state) {},
       child: Scaffold(
         appBar: AppBar(),
         body: Container(
@@ -59,7 +57,72 @@ class MainScreen extends StatelessWidget {
                     builder: bleatBuilder,
                   ),
                 ),
-                height: 30,
+                height: 40,
+              ),
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      Text("Суицид: "),
+                      BlocBuilder<DevEmotionalBloc, DevEmotionalState>(
+                        bloc: this._bloc,
+                        builder: (context, state) {
+                          if (state is DevEmotionalSuccess) {
+                            return Text(state
+                                .counters.lastUserEmotions!["suicide"]
+                                .toString());
+                          } else if (state is DevEmotionalInitial) {
+                            return Text(state
+                                .buttons!.lastUserEmotions!["suicide"]
+                                .toString());
+                          } else {
+                            return Text("Something went wrong");
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text("Сдаться: "),
+                      BlocBuilder<DevEmotionalBloc, DevEmotionalState>(
+                        bloc: this._bloc,
+                        builder: (context, state) {
+                          if (state is DevEmotionalSuccess) {
+                            return Text(state
+                                .counters.lastUserEmotions!["give_up"]
+                                .toString());
+                          } else if (state is DevEmotionalInitial) {
+                            return Text(state
+                                .buttons!.lastUserEmotions!["give_up"]
+                                .toString());
+                          } else {
+                            return Text("Something went wrong");
+                          }
+                        },
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  Text("БЛЕАТ: "),
+                  BlocBuilder<DevEmotionalBloc, DevEmotionalState>(
+                    bloc: this._bloc,
+                    builder: (context, state) {
+                      if (state is DevEmotionalSuccess) {
+                        return Text(state.counters.lastUserEmotions!["bleat"]
+                            .toString());
+                      } else if (state is DevEmotionalInitial) {
+                        return Text(state.buttons!.lastUserEmotions!["bleat"]
+                            .toString());
+                      } else {
+                        return Text("Something went wrong");
+                      }
+                    },
+                  ),
+                ],
               ),
             ],
           ),
@@ -70,9 +133,9 @@ class MainScreen extends StatelessWidget {
 
   Widget giveUpBuilder(BuildContext context, DevEmotionalState state) {
     if (state is DevEmotionalSuccess) {
-      return Text(state.counters["give_up"].toString());
+      return Text(state.counters.userEmotions!["give_up"].toString());
     } else if (state is DevEmotionalInitial) {
-      return Text(state.buttons!["give_up"].toString());
+      return Text(state.buttons!.userEmotions!["give_up"].toString());
     } else if (state is DevEmotionalFailed) {
       return Text(state.warning!);
     }
@@ -81,9 +144,9 @@ class MainScreen extends StatelessWidget {
 
   Widget bleatBuilder(BuildContext context, DevEmotionalState state) {
     if (state is DevEmotionalSuccess) {
-      return Text(state.counters["bleat"].toString());
+      return Text(state.counters.userEmotions!["bleat"].toString());
     } else if (state is DevEmotionalInitial) {
-      return Text(state.buttons!["bleat"].toString());
+      return Text(state.buttons!.userEmotions!["bleat"].toString());
     } else if (state is DevEmotionalFailed) {
       return Text(state.warning!);
     }
@@ -92,12 +155,34 @@ class MainScreen extends StatelessWidget {
 
   Widget suicideBuilder(BuildContext context, DevEmotionalState state) {
     if (state is DevEmotionalSuccess) {
-      return Text(state.counters["suicide"].toString());
+      return Text(state.counters.userEmotions!["suicide"].toString());
     } else if (state is DevEmotionalInitial) {
-      return Text(state.buttons!["suicide"].toString());
+      return Text(state.buttons!.userEmotions!["suicide"].toString());
     } else if (state is DevEmotionalFailed) {
       return Text(state.warning!);
     }
     return Text(ProfileStrings.something_wrong);
+  }
+}
+
+class GiveUp extends StatelessWidget {
+  final DevEmotionalState state;
+  const GiveUp(this.state);
+
+  @override
+  Widget build(BuildContext context) {
+    if (state is DevEmotionalSuccess) {
+      return Text((state as DevEmotionalSuccess)
+          .counters
+          .lastUserEmotions!["bleat"]
+          .toString());
+    } else if (state is DevEmotionalInitial) {
+      return Text((state as DevEmotionalInitial)
+          .buttons!
+          .lastUserEmotions!["bleat"]
+          .toString());
+    } else {
+      return Text("Something went wrong");
+    }
   }
 }

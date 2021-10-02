@@ -13,4 +13,22 @@ class HiveFile {
     final box = await Hive.openBox<String>("uid");
     return box.get("uid");
   }
+  Future<String?>? getDate() async {
+    final box = await Hive.openBox<String>("uid");
+    return box.get("date");
+  }
+  Future<String?> writeDate() async {
+    final box = await Hive.openBox<String>("uid");
+    final String today = DateTime.now().toString(); 
+    box.put("date", today); 
+    return today;
+  }
+  void writeLastDate(String lastDay) async {
+    final box = await Hive.openBox<String>("uid");
+    box.put("last_date", lastDay);
+  }
+  Future<String?>? lastDate() async {
+    final box = await Hive.openBox<String>("uid");
+    return box.get("last_date");
+  }
 }

@@ -1,8 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:test_1/modules/login_data.dart';
-import '../test_globals.dart' as globals;
 
 class AuthService {
   AuthService();

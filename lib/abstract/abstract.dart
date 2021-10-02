@@ -8,3 +8,11 @@ enum ProfileButtonType {
   bleat,
 }
 
+// class Date {
+//   final DateTime time;
+//   Date(this.time);
+
+//   String getDay() {
+//     return time.day
+//   }
+// }
