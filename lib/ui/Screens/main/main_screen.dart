@@ -73,8 +73,8 @@ class MainScreen extends StatelessWidget {
                                 .toString());
                           } else if (state is DevEmotionalInitial) {
                             return Text(state
-                                .buttons!.lastUserEmotions!["suicide"]
-                                .toString());
+                                .buttons!.lastUserEmotions?["suicide"]
+                                .toString()?? "0");
                           } else {
                             return Text("Something went wrong");
                           }
@@ -90,12 +90,12 @@ class MainScreen extends StatelessWidget {
                         builder: (context, state) {
                           if (state is DevEmotionalSuccess) {
                             return Text(state
-                                .counters.lastUserEmotions!["give_up"]
-                                .toString());
+                                .counters.lastUserEmotions?["give_up"]
+                                .toString() ?? "0");
                           } else if (state is DevEmotionalInitial) {
                             return Text(state
-                                .buttons!.lastUserEmotions!["give_up"]
-                                .toString());
+                                .buttons!.lastUserEmotions?["give_up"]
+                                .toString() ?? "0");
                           } else {
                             return Text("Something went wrong");
                           }
@@ -112,8 +112,8 @@ class MainScreen extends StatelessWidget {
                     bloc: this._bloc,
                     builder: (context, state) {
                       if (state is DevEmotionalSuccess) {
-                        return Text(state.counters.lastUserEmotions!["bleat"]
-                            .toString());
+                        return Text(state.counters.lastUserEmotions?["bleat"]
+                            .toString() ?? "0");
                       } else if (state is DevEmotionalInitial) {
                         return Text(state.buttons!.lastUserEmotions!["bleat"]
                             .toString());
